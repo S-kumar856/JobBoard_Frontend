@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { registerService } from "../../services";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -9,25 +11,25 @@ function Register() {
         mobile: "",
     })
 
+    // targetin the multiple input field using name
     const handleFormData = (e) => {
-
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value })
-
     }
 
+    // controling the submit form and connecting the backend services
     const handleFormSubmit = async (e) => {
         e.preventDefault()
         const res = await registerService(formData)
         if (res.status === 200) {
-            alert('registered successfully')
+            alert('registered successfully');
+            navigate('/')
         }
         else {
             console.log(res)
             alert('error')
         }
     }
-
     return (
         <>
             <form onSubmit={handleFormSubmit}>

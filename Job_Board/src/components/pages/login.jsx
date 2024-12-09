@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { loginService } from "../../services";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login(){
+    // i user already logged in then automatically it open the home page
+    if (localStorage.getItem('token')){
+        alert('Already logged in');
+        navigate('/home');
+    }
     const navigate = useNavigate();
     const [loginFormData, setLoginFormData] = useState({
         email: "",
@@ -18,6 +23,7 @@ function Login(){
         e.preventDefault();
         const res = await loginService(loginFormData);
         if (res.status === 200){
+            localStorage.setItem('token', res.token)
             alert("Login successfull")
             navigate("/home");
         }
@@ -27,7 +33,6 @@ function Login(){
         setLoginFormData("");   
       
     }
-
 
     return(
         <>
