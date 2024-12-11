@@ -1,0 +1,131 @@
+import React, { useEffect, useState } from "react";
+import { crateJobService } from "../../services";
+import { useParams } from "react-router-dom";
+import { updateJob, getJobById } from "../../services";
+
+
+function NewJobs() {
+    const [isEdit, setIsEdit] = useState(false)
+    const { id } = useParams()
+    useEffect(() =>{
+        if(id){
+            setIsEdit(true)
+        }
+    },[id])
+
+
+    const [jobFormData, setJobFormData] = useState({
+        companyName: "",
+        jobPosition: "",
+        salary: "",
+        jobType: "",
+        jobDescription:"",
+        jobRequirements:"",
+        location:"",
+        skills:"",
+        Company:""
+    })
+
+    useEffect(()=>{
+        if(isEdit && id){
+            const fetchData = async () => {
+                const res = await getJobById(id)
+                if(res.status === 200){
+                    const data = await res.json()
+                    setJobFormData(data)
+                }
+                else{
+                    console.log(res)
+                }
+            }
+            fetchData();
+        }
+    },[isEdit, id])
+
+    const handleJobformData = (e) =>{
+        const { name, value} = e.target;
+        setJobFormData({...jobFormData, [name]:value})
+    }
+
+    const handlejobSubmitData = async (e) =>{
+        e.preventDefault();
+        const  res = isEdit ? await updateJob(id, jobFormData) : await crateJobService(jobFormData)
+        if(res.status === 200){
+            const data = await res.json()
+            console.log(data)
+            
+            setJobFormData({
+                companyName: "",
+                jobPosition: "",
+                salary: "",
+                jobType: "",
+                jobDescription:"",
+                jobRequirements:"",
+                location:"",
+                skills:"",
+                Company:""
+            })
+
+
+            alert(`Job ${isEdit ? 'updated' : 'created'} successfully`)
+        } 
+        else if( res.status === 401){
+            alert("Login to create a Job")
+        }
+        else{
+            console.log(res)
+            alert("Error")
+
+        }
+        
+    };
+
+    return (
+        <>
+            <h1>New Job</h1>
+            <form onSubmit={handlejobSubmitData}>
+                <input type="text" value={jobFormData.companyName}
+                    onChange={handleJobformData}
+                    name="companyName" placeholder="Enter company name" />
+                <input type="text" value={jobFormData.jobPosition}
+                    onChange={handleJobformData}
+                    name="jobPosition" placeholder="Enter job position" />
+                <input type="text" value={jobFormData.salary}
+                    onChange={handleJobformData}
+                    name="salary" placeholder="Enter Salary" />
+
+                <input type="text" name="jobDescription" value={jobFormData.jobDescription} 
+                onChange={handleJobformData} placeholder="Enter job description"/>
+
+                <input type="text" name="jobRequirements" value={jobFormData.jobRequirements} 
+                onChange={handleJobformData} placeholder="Enter job requirements"/>
+                <input type="text" name="location" value={jobFormData.location} 
+                onChange={handleJobformData} placeholder="Enter job location" />
+
+                <input type="text" name="skills" value={jobFormData.skills} 
+                onChange={handleJobformData} placeholder="Enter required skills"/>
+
+                <input type="text" name="Company" value={jobFormData.Company} 
+                onChange={handleJobformData} placeholder="Enter company type"/>
+
+
+
+                <select name="jobType" value={jobFormData.jobType} 
+                onChange={handleJobformData}>
+
+                    <option value="">Select Job Type</option>
+                    <option value="full-time">full-time</option>
+                    <option value="part-time">part-time</option>
+                    <option value="contract">contract</option>
+                    <option value="internship">internship</option>
+                    <option value="freelance">freelance</option>
+                </select>
+
+                <button type="submit">{isEdit ? 'update': 'Post job'}</button>
+
+            </form>
+        </>
+    )
+}
+
+export default NewJobs;

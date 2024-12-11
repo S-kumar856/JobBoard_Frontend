@@ -22,6 +22,13 @@ function Register() {
         e.preventDefault()
         const res = await registerService(formData)
         if (res.status === 200) {
+
+            setFormData({
+                name: "",
+                email: "",
+                password: "",
+                mobile: "",
+            })
             alert('registered successfully');
             navigate('/')
         }

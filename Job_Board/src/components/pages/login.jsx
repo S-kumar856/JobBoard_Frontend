@@ -19,22 +19,28 @@ function Login() {
         e.preventDefault();
         const res = await loginService(loginFormData);
         if (res.status === 200) {
-            localStorage.setItem('token', res.token)
+            const data = await res.json()
+            console.log(data)
+            setLoginFormData({
+                email: "",
+                password: ""
+            })
+            localStorage.setItem('token', data.token)
             alert("Login successfull")
             navigate("/home");
         }
         else {
             alert("Invalid credentials")
         }
-        setLoginFormData("");
     }
 
     // if user already logged in, then automatically it open the home page
     useEffect(() => {
-        if (localStorage.getItem('token')) {
-            alert('Already logged in');
-            navigate('/home');
-        }
+        const token = localStorage.getItem('token')
+            if(token){
+                navigate('/home');
+            }
+        
     },[])
 
     return (

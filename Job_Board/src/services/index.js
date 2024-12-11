@@ -22,7 +22,7 @@ export const loginService = (data) =>{
     })
 };
 
-//  backend service for job fetiching
+//  backend service for job fetiching(reading data)
 export const getJobsService = () =>{
     return fetch(`${URL}/job`,{
         method: 'GET',
@@ -30,4 +30,42 @@ export const getJobsService = () =>{
             'Content-Type': 'application/json',
         },
     })
+}
+
+
+// backend service for creating a job data
+
+export const crateJobService = (data) =>{
+    return fetch(`${URL}/job`,{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(data),
+    })
+};
+
+// backend service for update 
+
+export const updateJob = (id, data) => {
+    return fetch(`${URL}/job/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(data),
+    })
+};
+
+export const getJobById = (id) => {
+    return fetch(`${URL}/job/${id}`, {
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${localStorage.getItem('token')}`
+        },
+    })
+
 }
