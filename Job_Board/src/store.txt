@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { crateJobService } from "../../services";
 import { useNavigate, useParams } from "react-router-dom";
-// import { updateJobService, getJobByIdService } from "../../services";
+import { updateJobService, getJobByIdService } from "../../services";
 
 
 function NewJobs() {
     const navigate = useNavigate();
-    // const [isEdit, setIsEdit] = useState(false);
-    // const { id } = useParams();
-    // useEffect(() =>{
-    //     if(id){
-    //         setIsEdit(true)
-    //     }
-    // },[id])
+    const [isEdit, setIsEdit] = useState(false);
+    const { id } = useParams();
+    useEffect(() =>{
+        if(id){
+            setIsEdit(true)
+        }
+    },[id])
      
     const [jobFormData, setJobFormData] = useState({
         companyName: "",
@@ -26,21 +26,21 @@ function NewJobs() {
         Company:""
     })
 
-    // useEffect(()=>{
-    //     if(isEdit && id){
-    //         const fetchData = async () => {
-    //             const res = await getJobByIdService(id)
-    //             if(res.status === 200){
-    //                 const data = await res.json()
-    //                 setJobFormData(data)
-    //             }
-    //             else{
-    //                 console.log(res)
-    //             }
-    //         }
-    //         fetchData();
-    //     }
-    // },[isEdit, id])
+    useEffect(()=>{
+        if(isEdit && id){
+            const fetchData = async () => {
+                const res = await getJobByIdService(id)
+                if(res.status === 200){
+                    const data = await res.json()
+                    setJobFormData(data)
+                }
+                else{
+                    console.log(res)
+                }
+            }
+            fetchData();
+        }
+    },[isEdit, id])
 
     const handleJobformData = (e) =>{
         const { name, value} = e.target;
@@ -49,7 +49,7 @@ function NewJobs() {
 
     const handlejobSubmitData = async (e) =>{
         e.preventDefault();
-        const  res = await crateJobService(jobFormData)
+        const  res = isEdit ? await updateJobService(id, jobFormData) : await crateJobService(jobFormData)
         if(res.status === 200){
             const data = await res.json()
             console.log(data)
@@ -65,7 +65,7 @@ function NewJobs() {
                 skills:"",
                 Company:""
             })
-            alert(`Job created successfully`)
+            alert(`Job ${isEdit ? 'updated' : 'created'} successfully`)
             navigate('/home')
         } 
         else if( res.status === 401){
@@ -118,7 +118,7 @@ function NewJobs() {
                     <option value="freelance">freelance</option>
                 </select>
 
-                <button type="submit">Post job</button>
+                <button type="submit">{isEdit ? 'update': 'Post job'}</button>
 
             </form>
         </>

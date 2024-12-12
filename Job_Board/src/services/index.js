@@ -48,7 +48,7 @@ export const crateJobService = (data) =>{
 
 // backend service for update 
 
-export const updateJob = (id, data) => {
+export const updateJobService = (id, data) => {
     return fetch(`${URL}/job/${id}`, {
         method: 'PUT',
         headers: {
@@ -59,7 +59,7 @@ export const updateJob = (id, data) => {
     })
 };
 
-export const getJobById = (id) => {
+export const getJobByIdService = (id) => {
     return fetch(`${URL}/job/${id}`, {
         method:'GET',
         headers: {
@@ -67,5 +67,17 @@ export const getJobById = (id) => {
             'Authorization': `${localStorage.getItem('token')}`
         },
     })
+}
 
+
+//  backend service for delete 
+
+export const deleteJobService = (id) => {
+    return fetch(`${URL}/job/${id}`, {
+        method:'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${localStorage.getItem('token')}`
+        },
+    })
 }

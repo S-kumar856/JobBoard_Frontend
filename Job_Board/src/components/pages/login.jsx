@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { loginService } from "../../services";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function Login() {
     const navigate = useNavigate();
@@ -21,6 +22,7 @@ function Login() {
         if (res.status === 200) {
             const data = await res.json()
             console.log(data)
+            toast.success(res.status)
             setLoginFormData({
                 email: "",
                 password: ""
