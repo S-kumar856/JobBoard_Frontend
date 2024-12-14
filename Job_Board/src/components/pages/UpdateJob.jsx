@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateJobService, getJobByIdService } from "../../services";
-
-// import toast from "react-toastify";
+import { toast } from 'react-toastify';
 
 function UpdateJob() {
     const navigate = useNavigate();
@@ -24,7 +23,6 @@ function UpdateJob() {
             const fetchData = async () => {
                 const res = await getJobByIdService(id);
                 if (res.status === 200) {
-                    // toast.success("Job updated successfully!");
                     const data = await res.json();
                     setJobFormData(data);
                 } else {
@@ -58,13 +56,13 @@ function UpdateJob() {
                 skills: "",
                 Company: "",
             });
-            alert("Job updated successfully");
+            toast.success("Job updated successfully");
             navigate("/home");
         } else if (res.status === 401) {
-            alert("Login to update the Job");
+            toast.error("Login to update the Job");
         } else {
             console.log(res);
-            alert("You are not authorized to update this job");
+            toast.error("You are not authorized to update this job");
         }
     };
 

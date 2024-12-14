@@ -17,7 +17,6 @@ function App() {
                 <Route path="/newjob" element={<NewJobs/>}/>
                 {/* <Route path="/editjob/:id" element={<NewJobs/>}/> */}
                 <Route path="/updatejob/:id" element={<UpdateJob/>} />
-
             </Routes>
         </>
     )

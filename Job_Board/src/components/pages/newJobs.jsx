@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { crateJobService } from "../../services";
-import { useNavigate, useParams } from "react-router-dom";
-// import { updateJobService, getJobByIdService } from "../../services";
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 
 function NewJobs() {
     const navigate = useNavigate();
-    // const [isEdit, setIsEdit] = useState(false);
-    // const { id } = useParams();
-    // useEffect(() =>{
-    //     if(id){
-    //         setIsEdit(true)
-    //     }
-    // },[id])
-     
     const [jobFormData, setJobFormData] = useState({
         companyName: "",
         jobPosition: "",
@@ -24,23 +16,7 @@ function NewJobs() {
         location:"",
         skills:"",
         Company:""
-    })
-
-    // useEffect(()=>{
-    //     if(isEdit && id){
-    //         const fetchData = async () => {
-    //             const res = await getJobByIdService(id)
-    //             if(res.status === 200){
-    //                 const data = await res.json()
-    //                 setJobFormData(data)
-    //             }
-    //             else{
-    //                 console.log(res)
-    //             }
-    //         }
-    //         fetchData();
-    //     }
-    // },[isEdit, id])
+    });
 
     const handleJobformData = (e) =>{
         const { name, value} = e.target;
@@ -65,15 +41,15 @@ function NewJobs() {
                 skills:"",
                 Company:""
             })
-            alert(`Job created successfully`)
+            toast.success(`Job created successfully`)
             navigate('/home')
         } 
         else if( res.status === 401){
-            alert("Login to create a Job")
+            toast.error("Login to create a Job")
         }
         else{
             console.log(res)
-            alert('You are not authorized to update  this job')
+            toast.error('You are not authorized to update  this job')
         }
     };
 
@@ -105,11 +81,8 @@ function NewJobs() {
                 <input type="text" name="Company" value={jobFormData.Company} 
                 onChange={handleJobformData} placeholder="Enter company type"/>
 
-
-
                 <select name="jobType" value={jobFormData.jobType} 
                 onChange={handleJobformData}>
-
                     <option value="">Select Job Type</option>
                     <option value="full-time">full-time</option>
                     <option value="part-time">part-time</option>
@@ -117,7 +90,6 @@ function NewJobs() {
                     <option value="internship">internship</option>
                     <option value="freelance">freelance</option>
                 </select>
-
                 <button type="submit">Post job</button>
 
             </form>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { registerService } from "../../services";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 function Register() {
     const navigate = useNavigate();
@@ -29,12 +30,12 @@ function Register() {
                 password: "",
                 mobile: "",
             })
-            alert('registered successfully');
+            toast('registered successfully');
             navigate('/')
         }
         else {
             console.log(res)
-            alert('error')
+            toast('error')
         }
     }
     return (

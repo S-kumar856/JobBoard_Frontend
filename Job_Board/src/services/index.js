@@ -23,8 +23,8 @@ export const loginService = (data) =>{
 };
 
 //  backend service for job fetiching(reading data)
-export const getJobsService = () =>{
-    return fetch(`${URL}/job`,{
+export const getJobsService = ( limit, offset, name) =>{
+    return fetch(`${URL}/job?limit=${limit}&offset=${offset}&name=${name}`,{
         method: 'GET',
         headers:{
             'Content-Type': 'application/json',

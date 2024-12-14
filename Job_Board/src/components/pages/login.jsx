@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { loginService } from "../../services";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from 'react-toastify';
 
 function Login() {
     const navigate = useNavigate();
@@ -10,6 +10,8 @@ function Login() {
         email: "",
         password: ""
     })
+
+    
 
     const handleLogin = (e) => {
         const { name, value } = e.target;
@@ -22,17 +24,16 @@ function Login() {
         if (res.status === 200) {
             const data = await res.json()
             console.log(data)
-            toast.success(res.status)
             setLoginFormData({
                 email: "",
                 password: ""
             })
             localStorage.setItem('token', data.token)
-            alert("Login successfull")
+            toast.success("Login successfull")
             navigate("/home");
         }
         else {
-            alert("Invalid credentials")
+            toast.error("Invalid credentials")
         }
     }
 
