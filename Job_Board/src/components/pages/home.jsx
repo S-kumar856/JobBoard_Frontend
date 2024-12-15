@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { getJobsService } from "../../services";
 import './home.css'
 import { useNavigate } from "react-router-dom";
 import { deleteJobService } from "../../services";
 import { toast } from 'react-toastify';
 
-// debouncing function
-const debouncingTime = 1000;
-const debounce = (func, wait) => {
-    let timeout
-    const context = this
-    clearTimeout(timeout)
-    timeout = setTimeout(() => func.call(context, []), wait)
-}
 
 function Home() {
     const [jobs, setJobs] = useState([]);
@@ -20,10 +12,25 @@ function Home() {
     const [limit, setLimit] = useState(10);
     const [offset, setOffset] = useState(0);
     const [count, setCount] = useState(0);
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState('');
+
+
+    const navigate = useNavigate();
+    const abortControllerRef = useRef(null)
+    const debounceTimerRef = useRef(null)
 
     // reading the data from the backend
-    const fetchJob = async () => {
+    const fetchJob = useCallback(async () => {
+
+        // cancle any ongoing request
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort()
+        }
+
+        // create a new AbortController
+        abortControllerRef.current = new AbortController()
+        const signal = abortControllerRef.current.signal
+
         try {
             setLoading(true);
             const response = await getJobsService(limit, offset * limit, search);
@@ -34,23 +41,53 @@ function Home() {
                 setCount(data.count)
             }
             else {
-                console.log(response)
+                console.log('Failed to fetch jobs', response)
             }
-            setLoading(false)
         }
         catch (err) {
-            console.error("Error fetching jobs: ", err);
-            toast.error("Failed to fetch jobs. Please try again later.");
-            setLoading(false);
+            if (err.name === 'AbortError') {
+                console.log('Request was cancled')
+            } else {
+                console.log('Error fetching jobs', err)
+                toast.error("Failed to fetch jobs. Please try again later.");
+            }
         }
-    }
+        finally {
+            setLoading(false)
+        }
+    }, [limit, offset, search])
 
+    // debounced fetch jobs
+
+    const debouncedFetchJobs = useCallback(() => {
+        // clear any existing timer
+        if (debounceTimerRef.current) {
+            clearTimeout(debounceTimerRef.current)
+        }
+
+        // set a new timer
+        debounceTimerRef.current = setTimeout(() => {
+            fetchJob()
+        }, 2000); // debunce time 2000ms
+    }, [fetchJob])
+
+
+    // Effect to trigger debounced fetch
     useEffect(() => {
         // adding debouncing
-        debounce(async () => {
-            fetchJob()
-        }, debouncingTime)
-    }, [limit, offset, search])
+        debouncedFetchJobs()
+
+        // Cleanup function
+        return () => {
+            if (debounceTimerRef.current) {
+                clearTimeout(debounceTimerRef.current)
+            }
+            if (abortControllerRef.current) {
+                abortControllerRef.current.abort()
+            }
+        }
+
+    }, [limit, offset, search, debouncedFetchJobs])
 
     //  handle event for deeleting job
     const handleJobDelete = async (id) => {
@@ -75,14 +112,16 @@ function Home() {
         }
     }
 
-    const navigate = useNavigate();
     return (
         <div>
             <h1>Well Come to HomePage</h1>
-            {loading ? <h1>Loading....</h1> : <>
-                <input type="text" onChange={(e) => setSearch(e.target.value)} value={search}
-                    placeholder="Search Jobs" />
+            <input type="text" 
+            onChange={(e) => setSearch(e.target.value)} 
+            value={search}
+            placeholder="Search Jobs" />
 
+            {loading ? <h1>Loading....</h1> : <>
+               
                 <div style={{
                     width: "400px",
                     height: "400px",
