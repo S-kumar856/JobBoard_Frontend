@@ -5,6 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { deleteJobService } from "../../services";
 import { toast } from 'react-toastify';
 
+// debouncing function
+const debouncingTime = 1000;
+const debounce = (func, wait) => {
+    let timeout
+    const context = this
+    clearTimeout(timeout)
+    timeout = setTimeout(() => func.call(context, []), wait)
+}
+
 function Home() {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -17,8 +26,8 @@ function Home() {
     const fetchJob = async () => {
         try {
             setLoading(true);
-            const response = await getJobsService(limit, offset * limit,  search);
-           
+            const response = await getJobsService(limit, offset * limit, search);
+
             if (response.status === 200) {
                 const data = await response.json()
                 setJobs(data.jobs)
@@ -35,9 +44,12 @@ function Home() {
             setLoading(false);
         }
     }
-   
+
     useEffect(() => {
-        fetchJob()
+        // adding debouncing
+        debounce(async () => {
+            fetchJob()
+        }, debouncingTime)
     }, [limit, offset, search])
 
     //  handle event for deeleting job
@@ -68,8 +80,8 @@ function Home() {
         <div>
             <h1>Well Come to HomePage</h1>
             {loading ? <h1>Loading....</h1> : <>
-                <input type="text"  onChange={(e) => setSearch(e.target.value)} value={search}
-                    placeholder="Search Jobs"/>
+                <input type="text" onChange={(e) => setSearch(e.target.value)} value={search}
+                    placeholder="Search Jobs" />
 
                 <div style={{
                     width: "400px",
