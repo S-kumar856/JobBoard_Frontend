@@ -14,7 +14,6 @@ function Home() {
     const [count, setCount] = useState(0);
     const [search, setSearch] = useState('');
 
-
     const navigate = useNavigate();
     const abortControllerRef = useRef(null)
     const debounceTimerRef = useRef(null)
@@ -138,6 +137,7 @@ function Home() {
                             <h3>{job.salary}</h3>
                             <h3>{job.skills}</h3>
                             <p>{job.descripion}</p>
+                            <p>{job.location}</p>
                             <button onClick={() => navigate(`/updatejob/${job._id}`)}>Edit</button>
                             <button onClick={() => handleJobDelete(job._id)}>Delete</button>
                         </div>
