@@ -22,6 +22,16 @@ export const loginService = (data) =>{
     })
 };
 
+// logout service
+export const logoutService = () =>{
+    return fetch(`${URL}/user/logout`,{
+        method: 'GET',
+        headers:{
+            'Content-Type': 'application/json',
+        },
+    })
+}
+
 //  backend service for job fetiching(reading data)
 export const getJobsService = ( limit, offset, name) =>{
     return fetch(`${URL}/job?limit=${limit}&offset=${offset}&name=${name}`,{

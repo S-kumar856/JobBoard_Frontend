@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { getJobsService } from "../../services";
 import './home.css'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { deleteJobService } from "../../services";
 import { toast } from 'react-toastify';
 
@@ -111,6 +111,12 @@ function Home() {
         }
     }
 
+    // logout
+
+    const handleLogout = () => {
+        localStorage.removeItem('token')
+    }
+
     return (
         <div>
             <h1>Well Come to HomePage</h1>
@@ -120,15 +126,19 @@ function Home() {
             placeholder="Search Jobs" />
 
             {loading ? <h1>Loading....</h1> : <>
+
+            <Link to={'/login'} onClick={handleLogout}>logout</Link>
+
                
-                <div style={{
+                {/* <div style={{
                     width: "400px",
                     height: "400px",
                     overflow: 'scroll',
                     margin: "30px",
                     padding: "10px",
 
-                }}>{jobs.map((job) => (
+                }}> */}
+                {jobs.map((job) => (
                     <div key={job.id}>
                         <div className="joob">
                             <h3>{job.companyName}</h3>
@@ -142,7 +152,7 @@ function Home() {
                             <button onClick={() => handleJobDelete(job._id)}>Delete</button>
                         </div>
                     </div>))}
-                </div>
+                {/* </div> */}
                 <select value={limit} onChange={(e) => setLimit(e.target.value)}>
                     <option value="10">10</option>
                     <option value="15">15</option>

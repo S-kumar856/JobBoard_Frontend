@@ -66,7 +66,6 @@ function NewJobs() {
                 <input type="text" value={jobFormData.salary}
                     onChange={handleJobformData}
                     name="salary" placeholder="Enter Salary" />
-
                 <input type="text" name="jobDescription" value={jobFormData.jobDescription} 
                 onChange={handleJobformData} placeholder="Enter job description"/>
 

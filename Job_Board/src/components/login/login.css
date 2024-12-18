@@ -1,0 +1,68 @@
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+  
+    font-size: 1rem;
+  }
+  .reg-h {
+    color: #000000;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+  .reg-p {
+    color: #525252;
+    margin-bottom: 1.8rem;
+  }
+  
+  .login-left {
+    margin-top: 5rem;
+    width: 50%;
+    height: 99%;
+    padding: 2rem 3rem;
+  }
+  
+  .login-left .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  .login-input {
+    margin-bottom: 0.8rem;
+    background-color: #ffff;
+    border: 2px solid #c2c2c2;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+  }
+  .login-input:focus {
+    outline-color: #7b7b7b;
+  }
+  
+  .check-box {
+    display: flex;
+    flex-direction: row;
+  }
+  .reg-submit {
+    background-color: #ed5353;
+    border: none;
+    width: 30%;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    color: #ffff;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+  .reg-submit:hover {
+    cursor: pointer;
+    background-color: #aa2a2a;
+  }
+  .login-right {
+    background-image: url("../../images/register.png");
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 50%;
+  }
+  
