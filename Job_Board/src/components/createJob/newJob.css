@@ -1,0 +1,92 @@
+.add-job-input {
+  background-color: #ffff;
+  border: 2px solid #c2c2c2;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 70%;
+
+}
+
+.new-job{
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 100px;
+}
+
+
+.new-job form{
+  width:50vw;
+}
+.add-job-input:focus {
+  outline-color: #7b7b7b;
+}
+.add-job-input::placeholder{
+  color: #ADADAD;
+}
+
+.check-box {
+  display: flex;
+  flex-direction: row;
+}
+.reg-submit {
+  background-color: #ed5353;
+  border: none;
+  width: 30%;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  color: #ffff;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+.reg-submit:hover {
+  cursor: pointer;
+  background-color: #aa2a2a;
+}
+.add-job-right {
+  background-image: url("../../images/add-job.png");
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 50%;
+}
+.input-box{
+  width: 100%;
+margin-bottom: 0.7rem;
+justify-content: space-between;
+
+}
+.select-type-box{
+  justify-content: flex-start !important;
+
+}
+.input-select-type{
+  width: 20% !important;
+
+  color: #ADADAD;
+}
+
+.edit-btns:hover{
+transform: scale(1.1);
+
+}
+.edit-job-btns{
+margin-top: 0.6rem;
+justify-content: flex-end;
+}
+
+.wallpaper img{
+height: 100vh;
+width: 35vw;
+}
+
+.del{
+  background-color: aqua;
+}

@@ -1,9 +1,10 @@
 .login-container {
     width: 100vw;
-    height: 100vh;
+    height: 95vh;
     display: flex;
-    flex-direction: row;
-    overflow: hidden;
+    
+      flex-direction: row;
+      overflow: hidden;
   
     font-size: 1rem;
   }
@@ -18,16 +19,33 @@
     margin-bottom: 1.8rem;
   }
   
+  .reg-p a{
+    color: black;
+  }
   .login-left {
     margin-top: 5rem;
-    width: 50%;
-    height: 99%;
+    width: 60%;
+    height: 100%;
     padding: 2rem 3rem;
   }
   
   .login-left .login-form {
     display: flex;
     flex-direction: column;
+  }
+
+  .left{
+    /* background-color: red; */
+    width: 80%;
+    margin-left: 4vw;
+  }
+  .login-right{
+     color: white;
+      padding: 1rem;
+      font-size: 2rem;
+      text-align: center;
+      letter-spacing: 1px;
+      line-height: 57px;
   }
   .login-input {
     margin-bottom: 0.8rem;
@@ -59,10 +77,11 @@
     background-color: #aa2a2a;
   }
   .login-right {
-    background-image: url("../../images/register.png");
-    background-size: cover;
+    background-image: url("../images/loginimg.png");
+    background-size:cover;
     background-position: center;
+    object-fit: cover;
     height: 100%;
-    width: 50%;
+    width: 40%;
   }
   

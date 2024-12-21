@@ -1,9 +1,9 @@
 .register-container {
     width: 100vw;
-    height: 100vh;
+    height: 100vh;       
     display: flex;
     flex-direction: row;
-    overflow: hidden;
+    overflow: hidden;                             
   
     font-size: 1rem;
   }
@@ -20,9 +20,14 @@
   
   .register-left {
     margin-top: 1rem;
-    width: 50%;
-    height: 99%;
+    width: 60%;
+    /* height: 100%; */
     padding: 2rem 3rem;
+  }
+
+  .reg-left{
+    width: 85%;
+    margin-left: 4vw;
   }
   
   .register-left .register-form {
@@ -59,9 +64,10 @@
     background-color: #aa2a2a;
   }
   .register-right {
-    background-image: url("../../images/register.png");
+    background-image: url("../images/loginimg.png");
     background-size: cover;
     background-position: center;
-    height: 100%;
-    width: 50%;
+    background-color: red;
+    /* height: 100%; */
+    width: 40%;
   }

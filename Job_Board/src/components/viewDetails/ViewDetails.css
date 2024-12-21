@@ -1,0 +1,92 @@
+.job-desc {
+    /* width: 60%; */
+    margin-bottom: 3rem;
+  }
+  .top-job-desc {
+    /* z-index: 10; */
+    background-color: #ffff;
+    margin-top: 5rem;
+    position: sticky;
+    top: 5rem;
+    padding: 0.6rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 2rem;
+    box-shadow: 0px 4px 23px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+  }
+  .bottom-job-desc {
+    padding: 0.6rem 1.6rem;
+    background-color: #ffff;
+    box-shadow: 0px 2px 35px 1px rgba(0, 0, 0, 0.1);
+  }
+  .dec-time {
+    color: #999999;
+    justify-content: space-between;
+  
+    width: 18%;
+  }
+  .des-title {
+    justify-content: space-between;
+  }
+  .edit-job {
+    background-color: #ed5353;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+  }
+  
+  .edit-job:hover {
+    background-color: transparent;
+    border: 1px solid #ed5353;
+    color: #ed5353;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  .place {
+    color: #ed5353;
+  }
+  .des-box {
+    justify-content: flex-start;
+    width: 40%;
+  }
+  .des-box-1 {
+    flex-direction: column;
+    align-items: flex-start;
+  
+    margin-right: 1rem;
+  }
+  .des-box-2 {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .about {
+  }
+  .about-company {
+  }
+  .about-title {
+  }
+  .about-des {
+    color: #595959;
+    line-height: 2rem;
+  }
+  
+  .about-job {
+  }
+  .skill-req-des {
+  }
+  .about-skills-req {
+    justify-content: flex-start;
+    color: #595959;
+    flex-direction: row;
+  }
+  .sr {
+    background-color: #ffeeee;
+    border-radius: 0.6rem;
+    padding: 0.3rem 0.6rem;
+    margin-right: 0.6rem;
+  }
+  .ad-info {
+  }

@@ -1,4 +1,4 @@
-const URL = 'http://localhost:4000/api'
+const URL = "https://backend-capston-project.onrender.com/api";
 
 //  backend service for user register
 export const registerService = (data) =>{
@@ -23,14 +23,14 @@ export const loginService = (data) =>{
 };
 
 // logout service
-export const logoutService = () =>{
-    return fetch(`${URL}/user/logout`,{
-        method: 'GET',
-        headers:{
-            'Content-Type': 'application/json',
-        },
-    })
-}
+// export const logoutService = () =>{
+//     return fetch(`${URL}/user/logout`,{
+//         method: 'GET',
+//         headers:{
+//             'Content-Type': 'application/json',
+//         },
+//     })
+// }
 
 //  backend service for job fetiching(reading data)
 export const getJobsService = ( limit, offset, name) =>{

@@ -25,6 +25,7 @@ function Login() {
             const data = await res.json()
             console.log(data)
             setLoginFormData({
+                
                 email: "",
                 password: ""
             })
@@ -50,17 +51,19 @@ function Login() {
         <>
             <div className='login-container'>
                 <div className="login-left">
-                    <h3 className='reg-h'>Already have an account?</h3>
-                    <p className='reg-p' >Your personal job finder is here</p>
-                    <form className='login-form' onSubmit={handleLoginSubmit}>
-                        <input type="email" name="email" placeholder='Email' value={loginFormData.email} onChange={handleLogin} className='login-input' />
-                        <input type="password" name="password" placeholder='Password' value={loginFormData.password} onChange={handleLogin} className='login-input' />
-                        <button type="submit" className='reg-submit'>Sign in</button>
-                    </form>
-                    <p className='reg-p' >Don’t have an account? <a><b><Link to={'/register'}>Sign Up</Link></b></a></p>
+                    <div className="left">
+                        <h3 className='reg-h'>Already have an account?</h3>
+                        <p className='reg-p' >Your personal job finder is here</p>
+                        <form className='login-form' onSubmit={handleLoginSubmit}>
+                            <input type="email" name="email" placeholder='Email' value={loginFormData.email} onChange={handleLogin} className='login-input' required />
+                            <input type="password" name="password" placeholder='Password' value={loginFormData.password} onChange={handleLogin} className='login-input' required />
+                            <button type="submit" className='reg-submit'>Sign in</button>
+                        </form>
+                        <p className='reg-p' >Don’t have an account? <a><b><Link to={'/register'}>Sign Up</Link></b></a></p>
+                    </div>
                 </div>
                 <div className="login-right">
-                    <p style={{ color: "white", padding: "1rem", fontSize: "1.5rem", textAlign: "center" }}>Your Personal Job Finder</p>
+                    <p>Your Personal Job Finder</p>
                 </div>
             </div>
         </>

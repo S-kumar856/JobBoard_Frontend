@@ -1,1 +1,223 @@
 
+.searchComponent{
+    background-color: #fff;
+    box-shadow: 0px 0px 20px 0px #FF202040;
+    margin: 0px 250px;
+    padding: 20px;
+    height: 30vh;
+/*    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+} 
+
+button{
+    cursor: pointer;
+}
+
+.search{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+}
+
+.fa-user-group{
+    font-size: 1rem;    
+}
+
+.search input{
+    padding: 13px;
+    outline: #b0b0b0;
+   
+    width: 85%;
+    border: 1px solid #b0b0b0;
+    border-radius: 10px;
+}
+
+
+.skillset{
+    display: flex;
+    gap: 20px;
+    width: 80%;
+    height: 10vh;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 90px;
+}
+
+.clear button{
+    border: none;
+    background: transparent;
+    color: #ED5353;
+    font-size: 1.1rem;
+}
+
+.skills select{
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #b0b0b0;
+    outline: #b0b0b0;
+    font-size: 1.1rem;
+}
+
+.btn button{
+    padding: 12px 40px;
+    background-color: #ED5353;
+    font-size: 1.1rem;
+    columns: #fff;
+    border-radius: 10px;
+    color: #fff;
+    border: none;
+    outline: none;
+}
+
+.jobs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 20px;
+    
+}
+
+.Job-card{
+    box-shadow: 0px 0px 20px 0px #FF202040;
+    margin: 40px 10px;
+    width: 67vw;
+    height: 20vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Job-card .image{
+    display: flex;
+    align-items: start;
+    margin: 0 30px 45px 30px;
+}
+
+.Job-card img{
+    height: 60px;
+    width: 60px;
+    /* border-radius: 20px; */
+    /* margin: 0px 20px; */
+}
+
+.pagination{
+    display: flex;
+    gap: 30x;
+    justify-content: end;
+    align-items: center;
+    width: 70%;
+}
+
+.pagination select{
+    margin: 20px;
+}
+
+.pagination button{
+    margin: 20px;
+    padding: 10px 30px;
+    background-color: transparent;
+    border: 1px solid #ED5353;
+    outline: none;
+    border-radius: 15px;
+}
+
+.company{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.job-position{
+    font-size: 1.5rem;
+    font-size: 800;
+}
+
+.specs{
+    display: flex;
+    gap: 20px;
+    margin: 5px;
+    color: #827c7c;
+    justify-content: center;
+    align-items: center;
+}
+
+.job-salary{
+    font-size: 1.2rem;
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.job-location{
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.flex img{
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.job-specs{
+    display: flex;
+    gap: 50px;
+    margin: 10px;
+    font-size: 1.1rem;
+    color: #ED5353;
+}
+
+.edit{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    justify-content: end;
+}
+
+.editBtn{
+    padding: 10px 50px;
+    color: #ED5353;
+    background-color: transparent;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: 2px solid #ED5353;
+}
+
+.viewDetails{
+    padding: 10px 50px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: #ED5353;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+}
+
+.skills{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.skill{
+    background-color: #FFEEEE;
+    padding: 5px 25px;
+    margin: 10px 5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    
+ }
